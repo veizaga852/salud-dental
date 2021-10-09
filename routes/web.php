@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\TreatmentsController;
+use App\Http\Controllers\QuotesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +26,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('users', UsersController::class);
+Route::resource('clients', ClientsController::class);
+Route::resource('treatments', TreatmentsController::class);
+Route::resource('quotes', QuotesController::class);
