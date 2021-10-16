@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Client;
 
 class ClientsController extends Controller
 {   
@@ -22,8 +23,9 @@ class ClientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('auth.clients.index');
+    {   
+        $clients = Client::OrderBy('id','desc')->paginate(10);
+        return view('auth.clients.index')->with('clients', $clients);
     }
 
     /**
@@ -44,7 +46,13 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client($request->all());
+        Client::create([
+            'ci' => $client['ci'],
+            'name' => $client['name'],
+            'phone' => $client['phone'],
+        ]);
+        return back();
     }
 
     /**
@@ -76,9 +84,14 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $client = Client::find($request->id);
+        $client->ci = $request->ci;
+        $client->name = $request->name;
+        $client->phone = $request->phone;
+        $client->save();
+        return back();
     }
 
     /**
@@ -87,8 +100,10 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $client = Client::find($request->id);
+        $client->delete();
+        return back();
     }
 }

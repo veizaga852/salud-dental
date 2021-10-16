@@ -50020,3 +50020,23 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 	
 /******/ })()
 ;
+
+$('#editarModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) 
+    var id = button.data('id')
+    var ci = button.data('ci')
+    var name = button.data('name')
+    var phone = button.data('phone') 
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id)
+    modal.find('.modal-body #ci').val(ci)
+    modal.find('.modal-body #name').val(name)
+    modal.find('.modal-body #phone').val(phone)
+});  
+
+$('#eliminarModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var id = button.data('id') 
+  var modal = $(this)
+  modal.find('.modal-body #id').val(id)
+});  

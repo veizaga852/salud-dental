@@ -1,76 +1,165 @@
 @extends('layouts.app')
 
 @section('content')
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Type</th>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="table-active">
-      <th scope="row">Active</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr>
-      <th scope="row">Default</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-primary">
-      <th scope="row">Primary</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-secondary">
-      <th scope="row">Secondary</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-success">
-      <th scope="row">Success</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-danger">
-      <th scope="row">Danger</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-warning">
-      <th scope="row">Warning</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-info">
-      <th scope="row">Info</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-light">
-      <th scope="row">Light</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-    <tr class="table-dark">
-      <th scope="row">Dark</th>
-      <td>Column content</td>
-      <td>Column content</td>
-      <td>Column content</td>
-    </tr>
-  </tbody>
-</table>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-2">
+            <p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarModal">
+                    Nuevo cliente
+                </button>
+
+                <div class="modal fade" id="registrarModal" tabindex="-1" role="dialog" aria-labelledby="registrarModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="registrarModalLabel">Registrar cliente</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form method="POST" action="{{ route('clients.store') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">CI</label>
+                                        <input type="text" class="form-control" id="ci" name="ci">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="name" name="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Teléfono</label>
+                                        <input type="text" class="form-control" id="phone" name="phone">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </p>    
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">Clientes</div>
+            <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>CI</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($clients as $client)
+                    <tr>
+                        <th>{{ $client->id }}</th>
+                        <td>{{ $client->ci }}</td>
+                        <td>{{ $client->name }}</td>
+                        <td>{{ $client->phone }}</td>
+                        <td>
+
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editarModal" data-id="{{ $client->id }}" data-ci="{{ $client->ci }}" data-name="{{ $client->name }}" data-phone="{{ $client->phone }}">
+                                Editar
+                            </button>
+
+                            <div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editarModalLabel">Editar cliente</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <form method="PUT" action="{{ route('clients.update', $client->id) }}">
+                                                @csrf 
+                                                <div hidden class="form-group">
+                                                    <label for="recipient-name" class="col-form-label">id</label>
+                                                    <input type="text" class="form-control" id="id" name="id">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="col-form-label">CI</label>
+                                                    <input type="text" class="form-control" id="ci" name="ci">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="col-form-label">Nombre</label>
+                                                    <input type="text" class="form-control" id="name" name="name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="message-text" class="col-form-label">Teléfono</label>
+                                                    <input type="text" class="form-control" id="phone" name="phone">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#eliminarModal" data-id="{{ $client->id }}">
+                                Eliminar
+                            </button>
+
+                            <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="eliminarModalLabel">¿Seguro que deseas eliminarlo?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <form method="DELETE" action="{{ route('clients.destroy', $client->id) }}">
+                                                @csrf 
+                                                <div hidden class="form-group">
+                                                    <label for="recipient-name" class="col-form-label">id</label>
+                                                    <input type="text" class="form-control" id="id" name="id">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-primary">Si, eliminalo</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                    @endforeach      
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
