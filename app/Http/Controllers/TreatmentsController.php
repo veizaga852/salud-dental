@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Treatment;
 
 class TreatmentsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,8 @@ class TreatmentsController extends Controller
      */
     public function index()
     {
-        //
+        $treatments = Treatment::OrderBy('id','desc')->paginate(10);
+        return view('auth.treatments.index')->with('treatments', $treatments);
     }
 
     /**
@@ -34,7 +46,13 @@ class TreatmentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $treatment = new Treatment($request->all());
+        Treatment::create([
+            'name' => $treatment['name'],
+            'cost' => $treatment['cost'],
+            'description' => $treatment['description'],
+        ]);
+        return back();
     }
 
     /**
@@ -66,9 +84,14 @@ class TreatmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $treatment = Treatment::find($request->id);
+        $treatment->name = $request->name;
+        $treatment->cost = $request->cost;
+        $treatment->description = $request->description;
+        $treatment->save();
+        return back();
     }
 
     /**
@@ -77,8 +100,10 @@ class TreatmentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $treatment = Treatment::find($request->id);
+        $treatment->delete();
+        return back();
     }
 }

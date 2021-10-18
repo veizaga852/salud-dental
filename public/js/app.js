@@ -50021,7 +50021,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ })()
 ;
 
-$('#editarModal').on('show.bs.modal', function (event) {
+$('#editclient').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) 
     var id = button.data('id')
     var ci = button.data('ci')
@@ -50034,9 +50034,29 @@ $('#editarModal').on('show.bs.modal', function (event) {
     modal.find('.modal-body #phone').val(phone)
 });  
 
-$('#eliminarModal').on('show.bs.modal', function (event) {
+$('#deleteclient').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) 
   var id = button.data('id') 
   var modal = $(this)
   modal.find('.modal-body #id').val(id)
 });  
+
+$('#edittreatment').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var id = button.data('id')
+  var name = button.data('name')
+  var cost = button.data('cost')
+  var description = button.data('description') 
+  var modal = $(this)
+  modal.find('.modal-body #id').val(id)
+  modal.find('.modal-body #name').val(name)
+  modal.find('.modal-body #cost').val(cost)
+  modal.find('.modal-body #description').val(description)
+});  
+
+$('#deletetreatment').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) 
+var id = button.data('id') 
+var modal = $(this)
+modal.find('.modal-body #id').val(id)
+});
