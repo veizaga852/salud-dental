@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Salud Dental</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Fonts -->
@@ -49,6 +49,9 @@
                             @endif
 
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('quotes.index') }}">Citas</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
                             </li>

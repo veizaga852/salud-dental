@@ -24,7 +24,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [QuotesController::class, 'index'])->name('home');
 
 Route::resource('users', UsersController::class);
 
@@ -38,3 +39,4 @@ Route::get('treatments/{id}/destroy', [TreatmentsController::class, 'destroy'])-
 
 Route::resource('quotes', QuotesController::class);
 Route::get('quotes/{id}/update', [QuotesController::class, 'update'])->name('quotes.update');
+Route::get('quotes/{id}/destroy', [QuotesController::class, 'destroy'])->name('quotes.destroy');

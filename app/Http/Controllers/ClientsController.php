@@ -92,7 +92,6 @@ class ClientsController extends Controller
         $client->phone = $request->phone;
         $client->save();
         return back();
-        //hola
     }
 
     /**
