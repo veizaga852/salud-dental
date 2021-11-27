@@ -74,7 +74,7 @@
                         <td>{{ $treatment->description }}</td>
                         <td>
 
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#edittreatment" data-id="{{ $treatment->id }}" data-name="{{ $treatment->name }}" data-cost="{{ $treatment->cost }}" data-description="{{ $treatment->description }}">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edittreatment" data-id="{{ $treatment->id }}" data-name="{{ $treatment->name }}" data-cost="{{ $treatment->cost }}" data-description="{{ $treatment->description }}">
                                 Editar
                             </button>
 

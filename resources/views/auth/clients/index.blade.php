@@ -74,7 +74,7 @@
                         <td>{{ $client->phone }}</td>
                         <td>
 
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editclient" data-id="{{ $client->id }}" data-ci="{{ $client->ci }}" data-name="{{ $client->name }}" data-phone="{{ $client->phone }}">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editclient" data-id="{{ $client->id }}" data-ci="{{ $client->ci }}" data-name="{{ $client->name }}" data-phone="{{ $client->phone }}">
                                 Editar
                             </button>
 

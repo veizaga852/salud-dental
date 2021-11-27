@@ -87,10 +87,16 @@
                         <th>{{ $quote->id }}</th>
                         <td>{{ $quote->date }}</td>
                         <td>{{ $quote->time }}</td>
-                        <td>{{ $quote->state }}</td>
+                        <td>
+                            @if($quote->state == "Reservado")
+                                <span class="btn btn-info">{{ $quote->state }}</span>
+                            @else
+                                <span class="btn btn-secondary">{{ $quote->state }}</span>
+                            @endif
+                        </td>
                         <td>
 
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editquote" data-id="{{ $quote->id }}" data-client_id="{{ $quote->client_id }}" data-treatment_id="{{ $quote->treatment_id }}" data-date="{{ $quote->date }}" data-time="{{ $quote->time }}" data-state="{{ $quote->state }}">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editquote" data-id="{{ $quote->id }}" data-client_id="{{ $quote->client_id }}" data-treatment_id="{{ $quote->treatment_id }}" data-date="{{ $quote->date }}" data-time="{{ $quote->time }}" data-state="{{ $quote->state }}">
                                 Editar
                             </button>
 
