@@ -25,15 +25,30 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">CI</label>
-                                        <input type="text" class="form-control" id="ci" name="ci">
+                                        <input type="text" class="form-control @error('ci') is-invalid @enderror" id="ci" name="ci" required>
+                                        @error('ci')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="name" name="name">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Teléfono</label>
-                                        <input type="text" class="form-control" id="phone" name="phone">
+                                        <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" required>
+                                        @error('phone')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -98,15 +113,30 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">CI</label>
-                                                    <input type="text" class="form-control" id="ci" name="ci">
+                                                    <input type="text" class="form-control @error('ci') is-invalid @enderror" id="ci" name="ci" required>
+                                                    @error('ci')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Nombre</label>
-                                                    <input type="text" class="form-control" id="name" name="name">
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+                                                    @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Teléfono</label>
-                                                    <input type="text" class="form-control" id="phone" name="phone">
+                                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" required>
+                                                    @error('phone')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

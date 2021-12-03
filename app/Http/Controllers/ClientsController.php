@@ -45,7 +45,13 @@ class ClientsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $request->validate([
+            'ci' => ['required', 'numeric', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'numeric', 'max:255']
+        ]);
+
         $client = new Client($request->all());
         Client::create([
             'ci' => $client['ci'],
@@ -86,6 +92,12 @@ class ClientsController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'ci' => ['required', 'numeric', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'numeric', 'max:255']
+        ]);
+        
         $client = Client::find($request->id);
         $client->ci = $request->ci;
         $client->name = $request->name;

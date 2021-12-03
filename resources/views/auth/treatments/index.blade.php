@@ -8,7 +8,6 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarModal">
                     Nuevo tratamiento
                 </button>
-
                 <div class="modal fade" id="registrarModal" tabindex="-1" role="dialog" aria-labelledby="registrarModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -25,15 +24,30 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="name" name="name">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+                                        @error('name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Costo</label>
-                                        <input type="text" class="form-control" id="cost" name="cost">
+                                        <input type="text" class="form-control @error('cost') is-invalid @enderror" id="cost" name="cost" required>
+                                        @error('cost')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Descripción</label>
-                                        <input type="text" class="form-control" id="description" name="description">
+                                        <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required>
+                                        @error('description')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror                                    
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -98,15 +112,30 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Nombre</label>
-                                                    <input type="text" class="form-control" id="name" name="name">
+                                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
+                                                    @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Costo</label>
-                                                    <input type="text" class="form-control" id="cost" name="cost">
+                                                    <input type="text" class="form-control @error('cost') is-invalid @enderror" id="cost" name="cost" required>
+                                                    @error('cost')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Descripción</label>
-                                                    <input type="text" class="form-control" id="description" name="description">
+                                                    <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" required>
+                                                    @error('description')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

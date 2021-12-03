@@ -46,6 +46,12 @@ class TreatmentsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'cost' => ['required', 'numeric', 'max:255'],
+            'description' => ['required', 'string', 'max:255']
+        ]);
+        
         $treatment = new Treatment($request->all());
         Treatment::create([
             'name' => $treatment['name'],
@@ -86,6 +92,12 @@ class TreatmentsController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'cost' => ['required', 'numeric', 'max:255'],
+            'description' => ['required', 'string', 'max:255']
+        ]);
+        
         $treatment = Treatment::find($request->id);
         $treatment->name = $request->name;
         $treatment->cost = $request->cost;

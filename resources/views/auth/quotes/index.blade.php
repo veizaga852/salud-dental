@@ -41,15 +41,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Fecha</label>
-                                        <input type="text" class="form-control" id="date" name="date">
+                                        <input type="date" class="form-control" id="date" name="date">
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Hora</label>
-                                        <input type="text" class="form-control" id="time" name="time">
+                                        <input type="time" class="form-control" id="time" name="time">
                                     </div>
                                     <div class="form-group">
                                         <label for="message-text" class="col-form-label">Estado</label>
-                                        <input type="text" class="form-control" id="state" name="state">
+                                        <select class="form-control" id="state" name="state">
+                                            <option>Reservado</option>
+                                            <option>Cancelado</option>    
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -137,15 +140,18 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="recipient-name" class="col-form-label">Fecha</label>
-                                                    <input type="text" class="form-control" id="date" name="date">
+                                                    <input type="date" class="form-control" id="date" name="date">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Hora</label>
-                                                    <input type="text" class="form-control" id="time" name="time">
+                                                    <input type="time" class="form-control" id="time" name="time">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="message-text" class="col-form-label">Estado</label>
-                                                    <input type="text" class="form-control" id="state" name="state">
+                                                    <select class="form-control" id="state" name="state">
+                                                        <option>Reservado</option>
+                                                        <option>Cancelado</option>    
+                                                    </select>
                                                 </div>
 
                                                 <div class="modal-footer">
