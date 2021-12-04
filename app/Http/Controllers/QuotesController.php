@@ -53,6 +53,12 @@ class QuotesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'date' => ['required', 'date'],
+            'time' => ['required'],
+            'state' => ['required']
+        ]);
+
         $quote = new Quote($request->all());
         $user = auth()->user();
         $quote->user_id = $user->id;
@@ -90,7 +96,13 @@ class QuotesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {
+    {   
+        $request->validate([
+            'date' => ['required', 'date'],
+            'time' => ['required'],
+            'state' => ['required']
+        ]);
+        
         $quote = Quote::find($request->id);
         $user = auth()->user();
         $quote->user_id = $user->id;

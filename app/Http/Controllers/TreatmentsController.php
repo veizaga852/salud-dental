@@ -47,9 +47,9 @@ class TreatmentsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'cost' => ['required', 'numeric', 'max:255'],
-            'description' => ['required', 'string', 'max:255']
+            'name' => ['required', 'string', 'max:50'],
+            'cost' => ['required', 'numeric', 'max:8'],
+            'description' => ['required', 'string', 'max:250']
         ]);
         
         $treatment = new Treatment($request->all());
@@ -93,9 +93,9 @@ class TreatmentsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'cost' => ['required', 'numeric', 'max:255'],
-            'description' => ['required', 'string', 'max:255']
+            'name' => ['required', 'string', 'max:50'],
+            'cost' => ['required', 'numeric', 'max:8'],
+            'description' => ['required', 'string', 'max:250']
         ]);
         
         $treatment = Treatment::find($request->id);

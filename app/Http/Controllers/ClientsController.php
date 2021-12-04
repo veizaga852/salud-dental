@@ -47,9 +47,9 @@ class ClientsController extends Controller
     public function store(Request $request)
     {   
         $request->validate([
-            'ci' => ['required', 'numeric', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric', 'max:255']
+            'ci' => ['required', 'numeric', 'min:6', 'max:8'],
+            'name' => ['required', 'string', 'max:100'],
+            'phone' => ['required', 'numeric', 'min:5', 'max:8']
         ]);
 
         $client = new Client($request->all());
@@ -93,9 +93,9 @@ class ClientsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'ci' => ['required', 'numeric', 'max:255'],
-            'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric', 'max:255']
+            'ci' => ['required', 'numeric', 'min:6', 'max:8'],
+            'name' => ['required', 'string', 'max:100'],
+            'phone' => ['required', 'numeric', 'min:5', 'max:8']
         ]);
         
         $client = Client::find($request->id);
