@@ -50084,3 +50084,35 @@ $('#deletequote').on('show.bs.modal', function (event) {
   var modal = $(this)
   modal.find('.modal-body #id').val(id)
   });
+
+$('#detallequote').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) 
+  var id = button.data('id')
+  var client_id = button.data('client_id')
+  var treatment_id = button.data('treatment_id')
+  var date = button.data('date')
+  var time = button.data('time')
+  var state = button.data('state')
+  var modal = $(this)
+  modal.find('.modal-body #id').val(id)
+  modal.find('.modal-body #client_id').val(client_id)
+  modal.find('.modal-body #treatment_id').val(treatment_id)
+  modal.find('.modal-body #date').val(date)
+  modal.find('.modal-body #time').val(time)
+  modal.find('.modal-body #state').val(state)
+});
+
+$('#printButton').on('click', function () 
+{ if ($('.modal').is(':visible')) 
+  { var modalId = $(event.target).closest('.modal').attr('id');
+    $('body').css('visibility', 'hidden');
+    $("#" + modalId).css('visibility', 'visible');
+    $('#' + modalId).removeClass('modal');
+    window.print();
+    $('body').css('visibility', 'visible');
+    $('#' + modalId).addClass('modal');
+  } 
+  else 
+  { window.print();
+  }
+});
