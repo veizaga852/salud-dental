@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Treatment;
+use App\Models\Quote;
 
 class TreatmentsController extends Controller
 {
@@ -24,8 +25,11 @@ class TreatmentsController extends Controller
      */
     public function index()
     {
-        $treatments = Treatment::OrderBy('id','desc')->paginate(10);
-        return view('auth.treatments.index')->with('treatments', $treatments);
+        $treatments = Treatment::OrderBy('name','asc')->paginate(6);
+        $quotes = Quote::OrderBy('date','desc')->paginate();
+        return view('auth.treatments.index')
+        ->with('treatments', $treatments)
+        ->with('quotes', $quotes);
     }
 
     /**
@@ -48,7 +52,7 @@ class TreatmentsController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'cost' => ['required', 'numeric', 'max:8'],
+            'cost' => ['required', 'numeric', 'max:99999999'],
             'description' => ['required', 'string', 'max:250']
         ]);
         
@@ -94,7 +98,7 @@ class TreatmentsController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:50'],
-            'cost' => ['required', 'numeric', 'max:8'],
+            'cost' => ['required', 'numeric', 'max:99999999'],
             'description' => ['required', 'string', 'max:250']
         ]);
         

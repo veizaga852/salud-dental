@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-2">
             <p>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registrarModal">
+                <button type="button" class="btn btn-primary col-md-12" data-toggle="modal" data-target="#registrarModal">
                     Nueva cita
                 </button>
             </p>    
@@ -57,6 +57,9 @@
                     @endforeach      
                 </tbody>
             </table>
+            <ul class="pagination justify-content-center">
+                {{ $quotes->links() }}
+            </ul>
             </div>
         </div>
     </div>

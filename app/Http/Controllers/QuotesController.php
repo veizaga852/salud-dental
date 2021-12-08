@@ -26,7 +26,7 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        $quotes = Quote::OrderBy('date','desc')->paginate(10);
+        $quotes = Quote::OrderBy('date','desc')->orderBy('time', 'desc')->paginate(6);
         $clients = Client::OrderBy('name','asc')->paginate();
         $treatments = Treatment::OrderBy('name','asc')->paginate();
         return view('auth.quotes.index')

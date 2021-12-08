@@ -24,7 +24,7 @@ class ClientsController extends Controller
      */
     public function index()
     {   
-        $clients = Client::OrderBy('id','desc')->paginate(10);
+        $clients = Client::OrderBy('ci','asc')->paginate(6);
         return view('auth.clients.index')->with('clients', $clients);
     }
 
@@ -47,9 +47,9 @@ class ClientsController extends Controller
     public function store(Request $request)
     {   
         $request->validate([
-            'ci' => ['required', 'numeric', 'min:6', 'max:8'],
+            'ci' => ['required', 'numeric', 'min:100000', 'max:99999999'],
             'name' => ['required', 'string', 'max:100'],
-            'phone' => ['required', 'numeric', 'min:5', 'max:8']
+            'phone' => ['required', 'numeric', 'min:10000', 'max:99999999']
         ]);
 
         $client = new Client($request->all());
@@ -93,9 +93,9 @@ class ClientsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'ci' => ['required', 'numeric', 'min:6', 'max:8'],
+            'ci' => ['required', 'numeric', 'min:100000', 'max:99999999'],
             'name' => ['required', 'string', 'max:100'],
-            'phone' => ['required', 'numeric', 'min:5', 'max:8']
+            'phone' => ['required', 'numeric', 'min:10000', 'max:99999999']
         ]);
         
         $client = Client::find($request->id);
